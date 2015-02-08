@@ -1,0 +1,45 @@
+#!/usr/bin/env php
+<?php
+use GetOptionKit\OptionCollection;
+use GetOptionKit\OptionParser;
+
+require __DIR__ . '/vendor/autoload.php';
+$specs = new OptionCollection;
+$specs->add('s|stage:', 'Run stage');
+$specs->add('p|plugin:', 'Run Target');
+$specs->add('a|action:', 'Target-Action');
+$specs->add('A|args+', 'Target-Args');
+
+$parser = new OptionParser($specs);
+
+try {
+    /** @var \GetOptionKit\OptionResult $result */
+    $result = $parser->parse($_SERVER['argv']);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
+
+$resultArray = $result->toArray();
+$app = new \phlop\Application();
+$buildOk = true;
+if (isset($resultArray['stage'])) {
+    $buildOk = $buildOk && $app->init()->runStages($resultArray['stage']);
+}
+
+if (isset($resultArray['plugin'])) {
+    if (!isset($resultArray['action'])) {
+        throw new \Exception("Plugin given but no action");
+    }
+    if (isset($resultArray['args'])) {
+        $args = $resultArray['args'];
+    } else {
+        $args = [];
+    }
+
+    $buildOk = $buildOk && $app->init()->runPluginAction($resultArray['plugin'], $resultArray['action'], $args);
+}
+
+if(!$buildOk){
+    echo "\nBUILD FAILED\n";
+}

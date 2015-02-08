@@ -1,0 +1,21 @@
+{
+    "name": "schorsch3000/phlop",
+    "description": "a simple build coreograph for php-projects",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dirk Heilig",
+            "email": "dirk@heilig-online.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "phlop\\":"src/phlop"
+        }
+    },
+    "require": {
+        "corneltek/getoptionkit": "~2",
+        "webmozart/glob": "dev-master"
+    },
+    "bin": ["phlop"]
+}

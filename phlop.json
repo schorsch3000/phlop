@@ -1,0 +1,15 @@
+{
+  "preBuild": [
+    "clear",
+    ["pack","def","tgz"],
+    ["composer", "updateOrInstall","bar","baz",[1,2,4]],
+    ["npm", "install"],
+    "lint",
+    "loc",
+    "pdepend",
+    "phpcpd",
+    "phpcs",
+    "phpmd",
+    "phpdox"
+  ]
+}
