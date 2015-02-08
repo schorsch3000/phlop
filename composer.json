@@ -15,7 +15,7 @@
     },
     "require": {
         "corneltek/getoptionkit": "~2",
-        "webmozart/glob": "dev-master"
+        "webmozart/glob": "1.0.x-dev"
     },
     "bin": ["phlop"]
 }
