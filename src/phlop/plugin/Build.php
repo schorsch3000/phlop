@@ -25,7 +25,6 @@ class Build extends \phlop\Plugin
         $this->runCommandSilent('cp', ['-rp', $srcPath . '/.', $targetPath]);
         $this->buildComposer($targetPath);
 
-        die();
     }
 
     public function buildComposer($targetPath)
