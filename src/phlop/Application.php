@@ -89,7 +89,7 @@ class Application
 
     private function getStage($name)
     {
-        if (!isset($this->phlopData->stages->$name)) {
+        if (!isset($this->phlopData->$name)) {
             throw new \Exception("Stage $name not found");
         }
         return $this->phlopData->$name;
