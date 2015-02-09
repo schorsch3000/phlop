@@ -57,7 +57,7 @@ class Plugin
     protected function runPrefix()
     {
         if (isset($this->config->phpVersion)) {
-            return "phpenv local " . escapeshellarg($this->config->phpVersion) . '; ';
+            return ". ~/.bashrc; phpenv local " . escapeshellarg($this->config->phpVersion) . '; ';
         }
         return '';
     }
