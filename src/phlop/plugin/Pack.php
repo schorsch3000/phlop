@@ -44,7 +44,7 @@ class Pack extends \phlop\Plugin
         }
         $args[] = $input;
 
-        return !$this->runCommand('tar', $args);
+        return !$this->runCommandSilent('tar', $args);
 
     }
 
