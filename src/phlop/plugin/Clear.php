@@ -13,7 +13,7 @@ use phlop\Fs;
 
 class Clear extends \phlop\Plugin
 {
-    public function def($delDirs = ['build'])
+    public function def($delDirs = ['build','dist'])
     {
         foreach ($delDirs as $delDir) {
             Fs::rmrf($delDir);
