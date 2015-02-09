@@ -37,6 +37,8 @@ class Pack extends \phlop\Plugin
         $args[] = $this->interpolate("s,dist,$filenameFormat,");
         $args[] = '-f';
         $args[] = $this->interpolate('dist/packages/'.$filenameFormat . '.' . $packageType);
+        $args[] = '--exclude';
+        $args[] = 'dist/packages/';
         if ($packageType == 'tgz') {
             $args[] = '-z';
         }
