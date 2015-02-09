@@ -38,7 +38,6 @@ class Application
     public function runStages($stageNames)
     {
         $buildOk=true;
-        $failures=[];
         foreach ((array)$stageNames as $stageName) {
             $stage = $this->getStage($stageName);
             foreach ($stage as $stageData) {
@@ -49,11 +48,14 @@ class Application
                     $pluginAction='def';
                 }
                 $pluginParams = $stageData;
+                echo "Running task $pluginName\n";
                 $buildStatus=$this->runPluginAction($pluginName,$pluginAction,$pluginParams);
                 $buildOk=$buildOk && $buildStatus;
                 if(!$buildOk){
+                    echo "$pluginName failed\n";
                     return $buildOk;
                 }
+                echo "Done running $pluginName\n";
             }
         }
         return $buildOk;
