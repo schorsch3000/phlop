@@ -30,12 +30,13 @@ class Pack extends \phlop\Plugin
 
     public function def($packageType = 'tgz', $filenameFormat = "{composer.name.project}-{semver}", $input = 'dist')
     {
+        mkdir('dist/packages');
         $args = [];
         $args[] = '-c';
         $args[] = '--transform';
         $args[] = $this->interpolate("s,dist,$filenameFormat,");
         $args[] = '-f';
-        $args[] = $this->interpolate($filenameFormat . '.' . $packageType);
+        $args[] = $this->interpolate('dist/packages/'.$filenameFormat . '.' . $packageType);
         if ($packageType == 'tgz') {
             $args[] = '-z';
         }
