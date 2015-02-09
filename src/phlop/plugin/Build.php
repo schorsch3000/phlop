@@ -23,7 +23,7 @@ class Build extends \phlop\Plugin
         $clear->def([$targetPath]);
         mkdir($targetPath);
         $this->runCommandSilent('cp', ['-rp', $srcPath . '/.', $targetPath]);
-        $this->buildComposer($targetPath);
+        return !$this->buildComposer($targetPath);
 
     }
 
@@ -35,7 +35,8 @@ class Build extends \phlop\Plugin
         copy('composer.json', $targetPath . '/composer.json');
         $cwd = getcwd();
         chdir($targetPath);
-        $this->runCommand('composer', ["install","--no-dev", "--no-scripts", "--optimize-autoloader"]);
+        $retval=$this->runCommand('composer', ["install","--no-dev", "--no-scripts", "--optimize-autoloader"]);
         chdir($cwd);
+        return $retval;
     }
 }
