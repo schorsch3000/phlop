@@ -32,7 +32,7 @@ class Phpmd extends Plugin
         }
         echo $output;
 
-        return false;
+        return true;
 
     }
 
