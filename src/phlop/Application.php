@@ -82,13 +82,14 @@ class Application
             throw new \Exception("PLUGIN $pluginName HAS NO ACTION $pluginAction");
         }
         $plugin->setCtx($this->ctx);
+        $plugin->setConfig($this->phlopData);
         return call_user_func_array([$plugin, $pluginAction], $pluginParams);
     }
 
 
     private function getStage($name)
     {
-        if (!isset($this->phlopData->$name)) {
+        if (!isset($this->phlopData->stages->$name)) {
             throw new \Exception("Stage $name not found");
         }
         return $this->phlopData->$name;

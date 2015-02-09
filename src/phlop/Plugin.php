@@ -12,9 +12,19 @@ namespace phlop;
 class Plugin
 {
     protected $ctx;
-    public function setCtx($ctx){
-        $this->ctx=$ctx;
+    protected $config;
+
+
+    public function setConfig($config)
+    {
+        $this->config = $config;
     }
+
+    public function setCtx($ctx)
+    {
+        $this->ctx = $ctx;
+    }
+
     protected function runCommand($command, $args = '')
     {
         $cmd = $command;
@@ -23,7 +33,9 @@ class Plugin
             $cmd .= escapeshellarg($arg);
         }
         echo "Running $cmd\n";
+        $cmd.=$this->runPrefix();
         system($cmd, $retVal);
+        $this->cleanup();
         return $retVal;
     }
 
@@ -35,15 +47,27 @@ class Plugin
             $cmd .= escapeshellarg($arg);
         }
         echo "Running $cmd\n";
+        $cmd.=$this->runPrefix();
         exec($cmd, $stdout, $retVal);
+        $this->cleanup();
         $stdout = join("\n", $stdout);
         return $retVal;
     }
+    protected function runPrefix(){
+        if(isset($this->config->phpVersion)){
+            return "phpenv local ".escapeshellarg($this->config->phpVersion).'; ';
+        }
+        return '';
+    }
+    protected function cleanup(){
+         unlink('.php-version');
+    }
+
 
     protected function interpolate($message)
     {
         $replaces = array();
-        $context=$this->flatten($this->ctx);
+        $context = $this->flatten($this->ctx);
         foreach ($context as $key => $val) {
             if (is_bool($val)) {
                 $val = '[bool: ' . (int)$val . ']';
@@ -62,6 +86,7 @@ class Plugin
         }
         return strtr($message, $replaces);
     }
+
     protected function flatten(array $arr, $prefix = '')
     {
         $out = array();
