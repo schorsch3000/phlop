@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="phlop\Fs" namespace="phlop" name="Fs" abstract="false" final="false" start="6" end="12">
+  <file path="src/phlop" file="Fs.php" realpath="/home/dicky/projects/phlop/src/phlop/Fs.php" size="142" time="2015-02-08T09:11:04+01:00" unixtime="1423383064" sha1="3d6a6c2e317a5f28d35f5d6bf687096d03c1b80b" relative="phlop/Fs.php"/>
+  <method name="rmrf" start="8" end="11" abstract="false" final="false" static="true" visibility="public">
+    <parameter name="path" byreference="false" type="{unknown}"/>
+  </method>
+</class>

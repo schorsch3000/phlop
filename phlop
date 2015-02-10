@@ -12,7 +12,7 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 
 
 $specs = new OptionCollection;
-$specs->add('s|stage:', 'Run stage');
+$specs->add('s|stage+', 'Run stage');
 $specs->add('p|plugin:', 'Run Target');
 $specs->add('a|action:', 'Target-Action');
 $specs->add('A|args+', 'Target-Args');
