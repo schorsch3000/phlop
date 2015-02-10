@@ -91,3 +91,5 @@ build/Release
 node_modules
 demo-project
 
+
+tests/_output/*
