@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="phlop\plugin\Build" namespace="phlop\plugin" name="Build" abstract="false" final="false" start="16" end="42">
+  <file path="src/phlop/plugin" file="Build.php" realpath="/home/dicky/projects/phlop/src/phlop/plugin/Build.php" size="937" time="2015-02-09T21:39:59+01:00" unixtime="1423514399" sha1="b19b520ed07c2ac6035b9f71024a07b25cda4e30" relative="phlop/plugin/Build.php"/>
+  <extends full="phlop\Plugin" namespace="phlop" name="Plugin"/>
+  <method name="def" start="19" end="28" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="srcPath" byreference="false" type="string" default="'src'"/>
+    <parameter name="targetPath" byreference="false" type="string" default="'dist'"/>
+  </method>
+  <method name="buildComposer" start="30" end="41" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="targetPath" byreference="false" type="{unknown}"/>
+  </method>
+  <parent full="phlop\Plugin" namespace="phlop" name="Plugin">
+    <member name="ctx" type="{unknown}" visibility="protected" line="14"/>
+    <member name="config" type="{unknown}" visibility="protected" line="15"/>
+    <method name="setConfig" start="18" end="21" abstract="false" final="false" static="false" visibility="public">
+      <parameter name="config" byreference="false" type="{unknown}"/>
+    </method>
+    <method name="setCtx" start="23" end="26" abstract="false" final="false" static="false" visibility="public">
+      <parameter name="ctx" byreference="false" type="{unknown}"/>
+    </method>
+    <method name="runCommand" start="28" end="38" abstract="false" final="false" static="false" visibility="protected">
+      <parameter name="command" byreference="false" type="{unknown}"/>
+      <parameter name="args" byreference="false" type="string" default="''"/>
+    </method>
+    <method name="runCommandSilent" start="40" end="51" abstract="false" final="false" static="false" visibility="protected">
+      <parameter name="command" byreference="false" type="{unknown}"/>
+      <parameter name="args" byreference="false" type="string" default="''"/>
+      <parameter name="stdout" byreference="true" type="string" default="''"/>
+    </method>
+    <method name="interpolate" start="55" end="76" abstract="false" final="false" static="false" visibility="protected">
+      <parameter name="message" byreference="false" type="{unknown}"/>
+    </method>
+    <method name="flatten" start="78" end="90" abstract="false" final="false" static="false" visibility="protected">
+      <parameter name="arr" byreference="false" type="array"/>
+      <parameter name="prefix" byreference="false" type="string" default="''"/>
+    </method>
+  </parent>
+</class>

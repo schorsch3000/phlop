@@ -92,4 +92,5 @@ node_modules
 demo-project
 
 
-tests/_output/*
+tests/_output/*build
+dist

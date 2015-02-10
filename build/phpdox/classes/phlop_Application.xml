@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="phlop\Application" namespace="phlop" name="Application" abstract="false" final="false" start="7" end="114">
+  <file path="src/phlop" file="Application.php" realpath="/home/dicky/projects/phlop/src/phlop/Application.php" size="3376" time="2015-02-09T22:45:31+01:00" unixtime="1423518331" sha1="e835b7b8266e7ec33acdc140b44fb357da391041" relative="phlop/Application.php"/>
+  <member name="phlopFile" type="string" default="&quot;phlop.json&quot;" visibility="private" line="9"/>
+  <member name="phlopJson" type="{unknown}" visibility="private" line="10"/>
+  <member name="phlopData" type="array" visibility="private" line="11"/>
+  <member name="ctx" type="{unknown}" visibility="private" line="12"/>
+  <method name="setPhlopFile" start="14" end="19" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="file" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setPhlopJson" start="21" end="26" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="jsonString" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="init" start="28" end="36" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="runStages" start="38" end="63" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="stageNames" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getContext" start="64" end="71" abstract="false" final="false" static="false" visibility="private"/>
+  <method name="runPluginAction" start="73" end="87" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="pluginName" byreference="false" type="{unknown}"/>
+    <parameter name="pluginAction" byreference="false" type="{unknown}"/>
+    <parameter name="pluginParams" byreference="false" type="array"/>
+  </method>
+  <method name="getStage" start="90" end="96" abstract="false" final="false" static="false" visibility="private">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="loadPhlopFile" start="98" end="104" abstract="false" final="false" static="false" visibility="private"/>
+  <method name="parseJson" start="106" end="112" abstract="false" final="false" static="false" visibility="private"/>
+</class>
