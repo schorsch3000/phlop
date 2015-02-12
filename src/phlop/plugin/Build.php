@@ -36,7 +36,7 @@ class Build extends \phlop\Plugin
         copy('composer.json', $targetPath . '/composer.json');
         $cwd = getcwd();
         chdir($targetPath);
-        $retval=$this->runCommand('composer', ["install","--no-dev", "--no-scripts", "--optimize-autoloader"]);
+        $retval=$this->runCommand('composer', ["install","--no-dev", "--no-scripts", "--optimize-autoloader","--no-progress","--prefer-dist","--no-interaction"]);
         chdir($cwd);
         return $retval;
     }
