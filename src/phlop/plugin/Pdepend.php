@@ -15,8 +15,15 @@ use Webmozart\PathUtil\Path;
 
 class Pdepend extends Plugin
 {
-    public function def($srcPath = 'src', $logPath = 'build/logs', $chartPath='build/pdepend')
+
+    protected $defaultParamsDef = ["srcPath" => 'src', "logPath" => 'build/logs', "chartPath" => 'build/pdepend'];
+
+    public function def($params)
     {
+        $srcPath = 'src';
+        $logPath = 'build/logs';
+        $chartPath = 'build/pdepend';
+        extract($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
         }
@@ -31,14 +38,14 @@ class Pdepend extends Plugin
             echo "Can not create chartdir, $chartPath\n";
             return false;
         }
-        $output='';
-        $buildOk=$this->runCommandSilent('pdepend', ["--jdepend-xml=".$logPath."/jdepend.xml","--jdepend-chart=".$chartPath."/dependencies.svg", "--overview-pyramid=".$chartPath."/overview-pyramid.svg", $srcPath],$output);
-        if(0==$buildOk){
-            return true;
+        $output = '';
+        $retval = $this->runCommandSilent('pdepend', ["--jdepend-xml=" . $logPath . "/jdepend.xml", "--jdepend-chart=" . $chartPath . "/dependencies.svg", "--overview-pyramid=" . $chartPath . "/overview-pyramid.svg", $srcPath], $output);
+        if ($retval) {
+            return $retval;
         }
         echo $output;
-        var_dump($buildOk);
-        return false;
+
+        return $retval;
 
     }
 

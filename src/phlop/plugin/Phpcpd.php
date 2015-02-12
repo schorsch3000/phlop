@@ -15,8 +15,15 @@ use Webmozart\PathUtil\Path;
 
 class Phpcpd extends Plugin
 {
-    public function def($srcPath = 'src', $shallBreakBuild = false, $logPath = 'build/logs')
+    protected $defaultParamsDef = ["srcPath" => 'src', "shallBreakBuild" => false, "logPath" => 'build/logs'];
+
+    public function def($params)
+
     {
+        $srcPath = 'src';
+        $shallBreakBuild = false;
+        $logPath = 'build/logs';
+        extract($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
         }
@@ -29,17 +36,21 @@ class Phpcpd extends Plugin
         $args = [];
 
         $args[] = "--log-pmd";
-        $args[]="$logPath/pmd-cpd.xml";
+        $args[] = "$logPath/pmd-cpd.xml";
 
         $args[] = $srcPath;
 
-        $buildOk = $this->runCommand('phpcpd', $args, $output);
-        if (0 == $buildOk) {
-            return true;
+        $retval = $this->runCommand('phpcpd', $args, $output);
+        if (!$retval) {
+            return $retval;
         }
-        echo "Found Errors in checkstyle\n",$output;
+        $this->warning("Found Errors in copy paste detection");
+        $this->info($output);
 
-        return !$shallBreakBuild;
+        if($shallBreakBuild){
+            return $retval;
+        }
+        return 0;
 
     }
 
