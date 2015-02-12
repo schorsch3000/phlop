@@ -16,7 +16,7 @@
   "require": {
     "lijinma/php-cli-color": "~1.0",
     "psr/log": "~1.0",
-    "webmozart/glob": "1.0.0-beta3"
+    "webmozart/glob": "*"
   },
     "bin": ["phlop"]
 
