@@ -30,10 +30,10 @@ class Npm extends \phlop\Plugin{
         }
     }
     public function install(){
-        return !$this->runCommand('npm',__FUNCTION__);
+        return $this->runCommand('npm',__FUNCTION__);
     }
     public function update(){
-        return !$this->runCommand('npm',__FUNCTION__);
+        return $this->runCommand('npm',__FUNCTION__);
     }
     public function clean(){
         Fs::rmrf('node_modules');

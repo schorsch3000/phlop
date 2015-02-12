@@ -4,33 +4,29 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e257ce9086fb06d548e73cbebdbc0799",
+    "hash": "2e593013ec34f60f1c14833cd5831ea7",
     "packages": [
         {
-            "name": "corneltek/getoptionkit",
-            "version": "2.0.11",
+            "name": "lijinma/php-cli-color",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/c9s/GetOptionKit.git",
-                "reference": "13a146e0f7b9161977332279dff894fa28c53168"
+                "url": "https://github.com/lijinma/php-cli-color.git",
+                "reference": "5ee4f7414882b26a4a657428e9a15872bde99b38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/c9s/GetOptionKit/zipball/13a146e0f7b9161977332279dff894fa28c53168",
-                "reference": "13a146e0f7b9161977332279dff894fa28c53168",
+                "url": "https://api.github.com/repos/lijinma/php-cli-color/zipball/5ee4f7414882b26a4a657428e9a15872bde99b38",
+                "reference": "5ee4f7414882b26a4a657428e9a15872bde99b38",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "require-dev": {
-                "corneltek/phpunit-testmore": "dev-master",
-                "satooshi/php-coveralls": "dev-master"
-            },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "GetOptionKit": "src"
+                "psr-4": {
+                    "Lijinma\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -39,27 +35,65 @@
             ],
             "authors": [
                 {
-                    "name": "Yo-An Lin",
-                    "email": "cornelius.howl@gmail.com",
-                    "homepage": "http://c9s.me"
+                    "name": "Jinma li",
+                    "email": "lijinma@126.com",
+                    "homepage": "http://www.lijinma.com"
                 }
             ],
-            "description": "Powerful command-line option toolkit",
-            "homepage": "http://github.com/c9s/GetOptionKit",
-            "time": "2014-11-21 03:28:57"
+            "description": "Make colorful CLI output easy",
+            "homepage": "https://github.com/lijinma/php-cli-color",
+            "time": "2014-12-23 07:14:16"
         },
         {
-            "name": "webmozart/glob",
-            "version": "dev-master",
+            "name": "psr/log",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/glob.git",
-                "reference": "7d9ba897b736bc38c20734ae2f5972ac6f6e96e1"
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/glob/zipball/7d9ba897b736bc38c20734ae2f5972ac6f6e96e1",
-                "reference": "7d9ba897b736bc38c20734ae2f5972ac6f6e96e1",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "webmozart/glob",
+            "version": "1.0.0-beta3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozart/glob.git",
+                "reference": "87128dee4810f241bbd608dc6b6dba9b75055f10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozart/glob/zipball/87128dee4810f241bbd608dc6b6dba9b75055f10",
+                "reference": "87128dee4810f241bbd608dc6b6dba9b75055f10",
                 "shasum": ""
             },
             "require": {
@@ -91,7 +125,7 @@
                 }
             ],
             "description": "A PHP implementation of Ant's glob.",
-            "time": "2015-01-30 12:50:24"
+            "time": "2015-01-30 12:49:54"
         },
         {
             "name": "webmozart/path-util",
@@ -139,7 +173,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "webmozart/glob": 20
+        "webmozart/glob": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,

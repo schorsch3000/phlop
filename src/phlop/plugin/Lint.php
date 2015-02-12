@@ -15,20 +15,21 @@ use Webmozart\PathUtil\Path;
 
 class Lint extends Plugin
 {
-    public function def($glob = 'src/**.php')
+    protected $defaultParamsDef=['glob'=>'src/**.php'];
+    public function def($params)
     {
-        $buildOk=true;
-        echo "Linting $glob\n";
+        $glob=$params['glob'];
+       $this->info('Linting '.$glob);
         $files = Glob::glob(Path::makeAbsolute($glob,getcwd()));
         foreach($files as $file){
             $output='';
             $returnValue=$this->runCommandSilent('php',['-l',$file],$output);
             if($returnValue){
-                echo "Linting error: $output\n";
-                $buildOk=false;
+                $this->error("Linting error: $output\n");
+                $ret=$returnValue;
             }
         }
-        return $buildOk;
+        return $ret;
     }
 
 }

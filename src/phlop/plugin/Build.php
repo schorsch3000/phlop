@@ -16,14 +16,15 @@ use Webmozart\PathUtil\Path;
 class Build extends \phlop\Plugin
 {
 
-    public function def($srcPath = 'src', $targetPath = 'dist')
+    protected $defaultParamsDef=['srcPath'=>'src','targetPath'=>'dist'];
+    public function def($params)
     {
 
         $clear = new Clear();
-        $clear->def([$targetPath]);
-        mkdir($targetPath);
-        $this->runCommandSilent('cp', ['-rp', $srcPath . '/.', $targetPath]);
-        return !$this->buildComposer($targetPath);
+        $clear->def(['delDirs'=>[$params['targetPath']]]);
+        mkdir($params['targetPath']);
+        $this->runCommandSilent('cp', ['-rp', $params['srcPath'] . '/.', $params['targetPath']]);
+        return !$this->buildComposer($params['targetPath']);
 
     }
 

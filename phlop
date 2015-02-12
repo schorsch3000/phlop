@@ -1,7 +1,5 @@
 #!/usr/bin/env php
 <?php
-use GetOptionKit\OptionCollection;
-use GetOptionKit\OptionParser;
 
 
 if (file_exists(__DIR__.'/vendor/autoload.php')) {
@@ -11,43 +9,42 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
 }
 
 
-$specs = new OptionCollection;
-$specs->add('s|stage+', 'Run stage');
-$specs->add('p|plugin:', 'Run Target');
-$specs->add('a|action:', 'Target-Action');
-$specs->add('A|args+', 'Target-Args');
 
-$parser = new OptionParser($specs);
+$logger=new \phlop\CliLog();
+#$logger->setMinLogLevel(2);
+/*
+$logger->debug('DEBUG');
+$logger->info('INFO');
+$logger->notice('NOTICE');
+$logger->warning('WARNING');
+$logger->error('ERROR');
+$logger->critical('CRITICAL');
+$logger->alert('ALERT');
+$logger->emergency('EMERGENCY');
+*/
 
-try {
-    /** @var \GetOptionKit\OptionResult $result */
-    $result = $parser->parse($_SERVER['argv']);
-} catch (Exception $e) {
-    echo $e->getMessage();
+
+
+$stages=$_SERVER['argv'];
+array_shift($stages);
+
+
+
+if(!count($stages)){
+    $stages[]='default';
+    $logger->info('no stages set via cli, using stage "default"');
+}else{
+    $logger->info('running stages: '.implode(", ",$stages));
+}
+
+$buildOk=true;
+$app=new \phlop\Application();
+$app->setLogger($logger);
+$retval=$app->init()->runStages($stages);
+if($retval){
+    $logger->emergency("Last action did not finish");
+    $logger->emergency("BUILD FAILED");
+    die($retval);
 }
 
 
-$resultArray = $result->toArray();
-$app = new \phlop\Application();
-$buildOk = true;
-if (isset($resultArray['stage'])) {
-    $buildOk = $buildOk && $app->init()->runStages($resultArray['stage']);
-}
-
-if (isset($resultArray['plugin'])) {
-    if (!isset($resultArray['action'])) {
-        throw new \Exception("Plugin given but no action");
-    }
-    if (isset($resultArray['args'])) {
-        $args = $resultArray['args'];
-    } else {
-        $args = [];
-    }
-
-    $buildOk = $buildOk && $app->init()->runPluginAction($resultArray['plugin'], $resultArray['action'], $args);
-}
-
-if(!$buildOk){
-    echo "\nBUILD FAILED\n";
-    die(1);
-}
