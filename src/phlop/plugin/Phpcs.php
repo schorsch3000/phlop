@@ -57,7 +57,7 @@ class Phpcs extends Plugin
         if (!$retval) {
             return $retval;
         }
-        $this->warning("Found Errors in copy paste detection");
+        $this->warning("Found Errors in checkstyle");
         $this->info($output);
 
         if($shallBreakBuild){
