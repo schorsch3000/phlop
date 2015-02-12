@@ -26,10 +26,10 @@ class Composer extends \phlop\Plugin{
         }
     }
     public function install(){
-        return $this->runCommand('composer',__FUNCTION__);
+        return $this->runCommand('composer',[__FUNCTION__,'--no-interaction','-o',"--no-progress"]);
     }
     public function update(){
-        return $this->runCommand('composer',__FUNCTION__);
+        return $this->runCommand('composer',[__FUNCTION__,'--no-interaction','-o',"--no-progress"]);
     }
     public function clean(){
         Fs::rmrf('vendor');
