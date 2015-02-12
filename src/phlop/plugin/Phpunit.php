@@ -17,6 +17,6 @@ class Phpunit extends \phlop\Plugin
     {
 
 
-        return !$this->runCommand('phpunit');
+        return $this->runCommand('phpunit');
     }
 }

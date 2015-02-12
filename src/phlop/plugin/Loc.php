@@ -15,22 +15,25 @@ use Webmozart\PathUtil\Path;
 
 class Loc extends Plugin
 {
-    public function def($srcPath = 'src', $testPath = 'tests', $logPath = 'build')
+    protected $defaultParamsDef=['srcPath' => 'src', 'testPath' => 'tests', 'logPath' => 'build'];
+    public function def($params)
     {
+        $srcPath =  $testPath = $logPath = '';
+        extract($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
         }
         if (!is_dir($logPath)) {
             echo "Can not create logdir, $logPath\n";
-            return false;
+            return 1;
         }
         $output='';
-        $buildOk=$this->runCommandSilent('phploc', ['--count-tests', '--log-csv', $logPath . '/phploc.csv', '--log-xml', 'phploc.xml', $srcPath, $testPath],$output);
-        if(!$buildOk){
-            return true;
+        $retval=$this->runCommandSilent('phploc', ['--count-tests', '--log-csv', $logPath . '/phploc.csv', '--log-xml', 'phploc.xml', $srcPath, $testPath],$output);
+        if($retval){
+            return $retval;
         }
         echo $output;
-        return false;
+        return $retval;
 
     }
 

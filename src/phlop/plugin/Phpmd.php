@@ -15,8 +15,11 @@ use Webmozart\PathUtil\Path;
 
 class Phpmd extends Plugin
 {
-    public function def($srcPath = 'src', $logPath = 'build/logs')
+    protected $defaultParamsDef=["srcPath" => 'src', "logPath" => 'build/logs'];
+    public function def($params)
     {
+        $srcPath = 'src'; $logPath = 'build/logs';
+        extract ($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
         }
@@ -26,13 +29,13 @@ class Phpmd extends Plugin
         }
 
         $output='';
-        $buildOk=$this->runCommandSilent('phpmd', [$srcPath, "xml", "phpmd.xml", "--reportfile", "$logPath/pmd.xml"],$output);
-        if(0==$buildOk){
-            return true;
+        $retval=$this->runCommandSilent('phpmd', [$srcPath, "xml", "phpmd.xml", "--reportfile", "$logPath/pmd.xml"],$output);
+        if($retval){
+            return $retval;
         }
-        echo $output;
 
-        return true;
+
+        return $retval;
 
     }
 

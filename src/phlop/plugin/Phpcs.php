@@ -15,8 +15,25 @@ use Webmozart\PathUtil\Path;
 
 class Phpcs extends Plugin
 {
-    public function def($srcPath = 'src', $shallBreakBuild = false, $logPath = 'build/logs', $extensions = 'php', $standard = 'PSR2', $ignore = '')
+
+    protected $defaultParamsDef = [
+        "srcPath" => 'src',
+        "shallBreakBuild" => false,
+        "logPath" => 'build/logs',
+        "extensions" => 'php',
+        "standard" => 'PSR2',
+        "ignore" => ''
+
+    ];
+    public function def($params)
     {
+        $srcPath = 'src';
+        $shallBreakBuild = false;
+        $logPath = 'build/logs';
+        $extensions = 'php';
+        $standard = 'PSR2';
+        $ignore = '';
+        extract($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
         }
@@ -36,13 +53,17 @@ class Phpcs extends Plugin
         }
         $args[] = $srcPath;
 
-        $buildOk = $this->runCommandSilent('phpcs', $args, $output);
-        if (0 == $buildOk) {
-            return true;
+        $retval = $this->runCommandSilent('phpcs', $args, $output);
+        if (!$retval) {
+            return $retval;
         }
-        echo "Found Errors in checkstyle\n",$output;
+        $this->warning("Found Errors in copy paste detection");
+        $this->info($output);
 
-        return !$shallBreakBuild;
+        if($shallBreakBuild){
+            return $retval;
+        }
+        return 0;
 
     }
 

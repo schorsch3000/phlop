@@ -13,36 +13,26 @@ use phlop\Fs;
 
 class Pack extends \phlop\Plugin
 {
-    public function tgz($filenmameFormat = "{composer.name.project}-{semver}", $input = 'dist')
-    {
-        return $this->def(__FUNCTION__, $filenmameFormat, $input);
-    }
 
-    public function tbz($filenmameFormat = "{composer.name.project}-{semver}", $input = 'dist')
-    {
-        return $this->def(__FUNCTION__, $filenmameFormat, $input);
-    }
+    protected $defaultParamsDef = ["type" => 'tgz', "filenameFormat" => "{composer.name.project}-{semver}", "input" => 'dist'];
 
-    public function tar($filenmameFormat = "{composer.name.project}-{semver}", $input = 'dist')
+    public function def($params)
     {
-        return $this->def(__FUNCTION__, $filenmameFormat, $input);
-    }
-
-    public function def($packageType = 'tgz', $filenameFormat = "{composer.name.project}-{semver}", $input = 'dist')
-    {
+        $type=$filenameFormat=$input='';
+        extract($params);
         mkdir('dist/packages');
         $args = [];
         $args[] = '-c';
         $args[] = '--transform';
         $args[] = $this->interpolate("s,dist,$filenameFormat,");
         $args[] = '-f';
-        $args[] = $this->interpolate('dist/packages/'.$filenameFormat . '.' . $packageType);
+        $args[] = $this->interpolate('dist/packages/' . $filenameFormat . '.' . $type);
         $args[] = '--exclude';
         $args[] = 'dist/packages';
-        if ($packageType == 'tgz') {
+        if ($type == 'tgz') {
             $args[] = '-z';
         }
-        if ($packageType == 'tgb') {
+        if ($type == 'tgb') {
             $args[] = '-j';
         }
         $args[] = $input;

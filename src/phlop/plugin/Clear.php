@@ -13,12 +13,16 @@ use phlop\Fs;
 
 class Clear extends \phlop\Plugin
 {
-    public function def($delDirs = ['build','dist'])
+    protected $defaultParamsDef=['delDirs'=>['build','dist']];
+
+    public function def(array $params)
     {
-        foreach ($delDirs as $delDir) {
+        $delDirs=$params['delDirs'];
+        $this->info('clearing dirs: '.implode(", ",$delDirs));
+        foreach ((array)$delDirs as $delDir) {
             Fs::rmrf($delDir);
         }
 
-        return true;
+        return 0;
     }
 }

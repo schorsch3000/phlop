@@ -14,6 +14,6 @@ namespace phlop\plugin;
 class Phpdox extends \phlop\Plugin{
 
     public function def(){
-        return !$this->runCommandSilent('phpdox',['-f','phpdox.xml']);
+        return $this->runCommandSilent('phpdox',['-f','phpdox.xml']);
     }
 }
