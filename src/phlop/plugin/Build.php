@@ -19,19 +19,18 @@ class Build extends \phlop\Plugin
     protected $defaultParamsDef=['srcPath'=>'src','targetPath'=>'dist'];
     public function def($params)
     {
-
         $clear = new Clear();
         $clear->def(['delDirs'=>[$params['targetPath']]]);
         mkdir($params['targetPath']);
         $this->runCommandSilent('cp', ['-rp', $params['srcPath'] . '/.', $params['targetPath']]);
-        return !$this->buildComposer($params['targetPath']);
+        return $this->buildComposer($params['targetPath']);
 
     }
 
     public function buildComposer($targetPath)
     {
         if (!is_file('composer.json')) {
-            return false;
+            return 3;
         }
         copy('composer.json', $targetPath . '/composer.json');
         $cwd = getcwd();
