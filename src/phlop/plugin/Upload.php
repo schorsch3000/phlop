@@ -17,7 +17,7 @@ class Upload extends \phlop\Plugin
 
     protected $defaultParamsDef = [
         'uploadFiles' => './dist/packages/**',
-        'nameFrom' => 'composer',git status
+        'nameFrom' => 'composer',
         'versionFrom' => 'semverFile',
         'semverFile' => '.semver',
         'composerFile' => 'composer.json',
