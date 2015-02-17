@@ -33,19 +33,15 @@ class Upload extends \phlop\Plugin
         $files = Glob::glob(Path::makeAbsolute($this->params['uploadFiles'], getcwd()));
         $name = $this->getName();
         $version = $this->getVersion();
+        $queryString=http_build_query(['name'=>$name,'version'=>$version]);
         foreach ($files as $file) {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'X-item-name: ' . $name,
-                'X-item-version: ' . $version,
-                'X-item-file-name' . basename($file)
-            ));
-            curl_setopt($ch, CURLOPT_URL, $this->params['repositoryUrl']);
+            curl_setopt($ch, CURLOPT_URL, $this->params['repositoryUrl'].'?'.$queryString);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: ' . mime_content_type($file)));
             curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents($file));
-            echo $result = curl_exec($ch);
+            echo curl_exec($ch);
         }
 
     }
