@@ -33,8 +33,9 @@ class Upload extends \phlop\Plugin
         $files = Glob::glob(Path::makeAbsolute($this->params['uploadFiles'], getcwd()));
         $name = $this->getName();
         $version = $this->getVersion();
-        $queryString=http_build_query(['name'=>$name,'version'=>$version]);
+
         foreach ($files as $file) {
+            $queryString=http_build_query(['name'=>$name,'version'=>$version,"filename"=>basename($file)]);
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $this->params['repositoryUrl'].'?'.$queryString);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
