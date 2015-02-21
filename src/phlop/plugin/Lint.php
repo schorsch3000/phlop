@@ -26,10 +26,10 @@ class Lint extends Plugin
             $returnValue=$this->runCommandSilent('php',['-l',$file],$output);
             if($returnValue){
                 $this->error("Linting error: $output\n");
-                $ret=$returnValue;
+
             }
         }
-        return $ret;
+        return $returnValue;
     }
 
 }
