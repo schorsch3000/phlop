@@ -8,11 +8,9 @@
 
 namespace phlop;
 
-
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
-
 
 class CliLog extends AbstractLogger
 {
@@ -34,8 +32,8 @@ class CliLog extends AbstractLogger
         }
         $realMessage = $logLevelDetails[1];
         $realMessage .= $this->interpolate($message, $context);
-        $realMessage.=Color::RST_ALL;
-        $realMessage.="\n";
+        $realMessage .= Color::RST_ALL;
+        $realMessage .= "\n";
         return fwrite(fopen('php://stderr', 'a'), $realMessage);
     }
 
@@ -49,8 +47,8 @@ class CliLog extends AbstractLogger
         $logLevels['warning'] = [$counter++, Color::YELLOW];
         $logLevels['error'] = [$counter++, Color::LIGHT_RED];
         $logLevels['critical'] = [$counter++, Color::RED];
-        $logLevels['alert'] = [$counter++, Color::BG_RED.Color::WHITE];
-        $logLevels['emergency'] = [$counter++,Color::BG_RED.Color::WHITE.Color::UNDERLINE];
+        $logLevels['alert'] = [$counter++, Color::BG_RED . Color::WHITE];
+        $logLevels['emergency'] = [$counter++, Color::BG_RED . Color::WHITE . Color::UNDERLINE];
 
 
         return $logLevels[$logLevel];

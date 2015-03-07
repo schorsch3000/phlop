@@ -8,9 +8,6 @@
 
 namespace phlop\plugin;
 
-
-
-
 class Phpdox extends \phlop\Plugin
 {
 

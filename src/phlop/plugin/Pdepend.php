@@ -8,7 +8,6 @@
 
 namespace phlop\plugin;
 
-
 use phlop\Plugin;
 use Webmozart\Glob\Glob;
 use Webmozart\PathUtil\Path;
@@ -39,7 +38,12 @@ class Pdepend extends Plugin
             return false;
         }
         $output = '';
-        $retval = $this->runCommandSilent('pdepend', ["--jdepend-xml=" . $logPath . "/jdepend.xml", "--jdepend-chart=" . $chartPath . "/dependencies.svg", "--overview-pyramid=" . $chartPath . "/overview-pyramid.svg", $srcPath], $output);
+        $retval = $this->runCommandSilent('pdepend', [
+            "--jdepend-xml=" . $logPath . "/jdepend.xml",
+            "--jdepend-chart=" . $chartPath . "/dependencies.svg",
+            "--overview-pyramid=" . $chartPath . "/overview-pyramid.svg",
+            $srcPath
+        ], $output);
         if ($retval) {
             return $retval;
         }
@@ -48,5 +52,4 @@ class Pdepend extends Plugin
         return $retval;
 
     }
-
 }
