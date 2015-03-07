@@ -44,7 +44,7 @@ $retval=$app->init()->runStages($stages);
 if($retval){
     $logger->emergency("Last action did not finish");
     $logger->emergency("BUILD FAILED");
-    die($retval);
+    die((int)$retval);
 }
 
 
