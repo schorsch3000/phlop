@@ -8,7 +8,6 @@
 
 namespace phlop\plugin;
 
-
 use phlop\Plugin;
 use Webmozart\Glob\Glob;
 use Webmozart\PathUtil\Path;
@@ -21,15 +20,14 @@ class Lint extends Plugin
         $glob=$params['glob'];
         $this->info('Linting '.$glob);
         $files = Glob::glob(Path::makeAbsolute($glob, getcwd()));
-        foreach($files as $file){
+        foreach ($files as $file) {
             $output='';
             $returnValue=$this->runCommandSilent('php', ['-l',$file], $output);
-            if($returnValue) {
+            if ($returnValue) {
                 $this->error("Linting error: $output\n");
 
             }
         }
         return $returnValue;
     }
-
 }

@@ -3,7 +3,6 @@
 
 namespace phlop;
 
-
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 
@@ -55,7 +54,7 @@ class Application
         $retval = true;
         foreach ((array)$stageNames as $stageName) {
             $retval = $retval && $this->runStage($stageName);
-            if($retval) {
+            if ($retval) {
                 return $retval;
             }
         }
@@ -132,10 +131,10 @@ class Application
         }
         $plugin = new $className;
         /**
- * @var $plugin \phlop\Plugin 
+ * @var $plugin \phlop\Plugin
 */
         $plugin->setLogger($this->logger);
-        if($pluginAction===false) {
+        if ($pluginAction===false) {
             $pluginAction=$plugin->getDefaultAction();
         }
         if (!method_exists($plugin, $pluginAction)) {
@@ -149,7 +148,7 @@ class Application
         $retval=call_user_func([$plugin, $pluginAction], $pluginParams);
         $this->notice('---------------------------------------------------');
         $this->notice('DONE: running plugin '.$pluginName);
-        if($retval>0) {
+        if ($retval>0) {
             $this->emergency("Plugin $pluginName FAILED");
         }
         $this->notice('---------------------------------------------------');
@@ -181,5 +180,4 @@ class Application
             throw new \Exception('JSON SEEMS WIRED');
         }
     }
-
 }

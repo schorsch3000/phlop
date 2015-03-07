@@ -7,24 +7,23 @@
  */
 
 namespace phlop\plugin;
-use phlop\Fs;
 
+use phlop\Fs;
 
 class Composer extends \phlop\Plugin
 {
     public function __construct()
     {
-        if(!is_file('composer.json')) {
+        if (!is_file('composer.json')) {
             throw new \Exception('composer.json not found');
         }
     }
     public function updateOrInstall()
     {
 
-        if(is_file('composer.lock')) {
-
+        if (is_file('composer.lock')) {
             return $this->update();
-        }else{
+        } else {
             return $this->install();
         }
     }

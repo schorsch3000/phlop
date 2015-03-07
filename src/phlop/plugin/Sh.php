@@ -8,9 +8,6 @@
 
 namespace phlop\plugin;
 
-
-
-
 class Sh extends \phlop\Plugin
 {
     protected $defaultParamsDef=['command'=>false,'args'=>[]];

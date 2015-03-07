@@ -8,7 +8,6 @@
 
 namespace phlop;
 
-
 class Color
 {
     const BLACK = "\033[0;30m";

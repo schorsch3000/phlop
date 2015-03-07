@@ -11,7 +11,6 @@ namespace phlop\plugin;
 use Webmozart\Glob\Glob;
 use Webmozart\PathUtil\Path;
 
-
 class Upload extends \phlop\Plugin
 {
 
@@ -92,7 +91,4 @@ class Upload extends \phlop\Plugin
         $data = json_decode(file_get_contents($this->params['npmFile']));
         return $data->version;
     }
-
-
 }
-

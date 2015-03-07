@@ -8,7 +8,6 @@
 
 namespace phlop;
 
-
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 

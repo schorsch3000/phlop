@@ -8,7 +8,6 @@
 
 namespace phlop\plugin;
 
-
 use phlop\Plugin;
 use Webmozart\Glob\Glob;
 use Webmozart\PathUtil\Path;
@@ -49,7 +48,7 @@ class Phpcs extends Plugin
         $output = '';
         $args = [];
         $args[] = "--report=$report";
-        if($reportToFile) {
+        if ($reportToFile) {
             $args[] = "--report-file=$logPath/checkstyle.xml";
         }
         $args[] = '--standard=' . $standard;
@@ -66,11 +65,10 @@ class Phpcs extends Plugin
         $this->warning("Found Errors in checkstyle");
         $this->info($output);
 
-        if($shallBreakBuild) {
+        if ($shallBreakBuild) {
             return $retval;
         }
         return 0;
 
     }
-
 }
