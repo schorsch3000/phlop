@@ -19,12 +19,12 @@ class Lint extends Plugin
     public function def($params)
     {
         $glob=$params['glob'];
-       $this->info('Linting '.$glob);
-        $files = Glob::glob(Path::makeAbsolute($glob,getcwd()));
+        $this->info('Linting '.$glob);
+        $files = Glob::glob(Path::makeAbsolute($glob, getcwd()));
         foreach($files as $file){
             $output='';
-            $returnValue=$this->runCommandSilent('php',['-l',$file],$output);
-            if($returnValue){
+            $returnValue=$this->runCommandSilent('php', ['-l',$file], $output);
+            if($returnValue) {
                 $this->error("Linting error: $output\n");
 
             }

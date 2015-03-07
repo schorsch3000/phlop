@@ -94,8 +94,7 @@ class Plugin
         foreach ($context as $key => $val) {
             if (is_bool($val)) {
                 $val = '[bool: ' . (int)$val . ']';
-            } elseif (
-                is_null($val)
+            } elseif (is_null($val)
                 || is_scalar($val)
                 || (is_object($val) && method_exists($val, '__toString'))
             ) {
