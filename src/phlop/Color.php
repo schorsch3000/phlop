@@ -9,7 +9,8 @@
 namespace phlop;
 
 
-class Color {
+class Color
+{
     const BLACK = "\033[0;30m";
     const DARK_GRAY = "\033[1;30m";
     const BLUE = "\033[0;34m";

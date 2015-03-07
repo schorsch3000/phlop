@@ -55,7 +55,7 @@ class Application
         $retval = true;
         foreach ((array)$stageNames as $stageName) {
             $retval = $retval && $this->runStage($stageName);
-            if($retval){
+            if($retval) {
                 return $retval;
             }
         }
@@ -85,7 +85,8 @@ class Application
         }
         return 0;
     }
-    private function parsePluginData($pluginData){
+    private function parsePluginData($pluginData)
+    {
         $pluginData = (array)$pluginData;
         $pluginName = array_shift($pluginData);
         $stageDataLength = count($pluginData);
@@ -104,7 +105,7 @@ class Application
         } else {
             throw new \Exception("params for plugin $pluginName are wrong" . print_r($pluginData, 1) . "\n");
         }
-        return compact('pluginName','pluginAction','pluginParams');
+        return compact('pluginName', 'pluginAction', 'pluginParams');
     }
 
     private function getContext()
@@ -130,9 +131,11 @@ class Application
             throw new \Exception($msg);
         }
         $plugin = new $className;
-        /** @var $plugin \phlop\Plugin */
+        /**
+ * @var $plugin \phlop\Plugin 
+*/
         $plugin->setLogger($this->logger);
-        if($pluginAction===false){
+        if($pluginAction===false) {
             $pluginAction=$plugin->getDefaultAction();
         }
         if (!method_exists($plugin, $pluginAction)) {
@@ -142,11 +145,11 @@ class Application
         }
         $plugin->setCtx($this->ctx);
         $plugin->setConfig($this->phlopData);
-        $pluginParams=$plugin->getMergedParams($pluginAction,$pluginParams);
+        $pluginParams=$plugin->getMergedParams($pluginAction, $pluginParams);
         $retval=call_user_func([$plugin, $pluginAction], $pluginParams);
         $this->notice('---------------------------------------------------');
         $this->notice('DONE: running plugin '.$pluginName);
-        if($retval>0){
+        if($retval>0) {
             $this->emergency("Plugin $pluginName FAILED");
         }
         $this->notice('---------------------------------------------------');
@@ -173,7 +176,7 @@ class Application
 
     private function parseJson()
     {
-        $this->phlopData = json_decode($this->phlopJson,true);
+        $this->phlopData = json_decode($this->phlopJson, true);
         if ($this->phlopData === null) {
             throw new \Exception('JSON SEEMS WIRED');
         }

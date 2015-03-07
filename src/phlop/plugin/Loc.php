@@ -28,8 +28,8 @@ class Loc extends Plugin
             return 1;
         }
         $output='';
-        $retval=$this->runCommandSilent('phploc', ['--count-tests', '--log-csv', $logPath . '/phploc.csv', '--log-xml', 'phploc.xml', $srcPath, $testPath],$output);
-        if($retval){
+        $retval=$this->runCommandSilent('phploc', ['--count-tests', '--log-csv', $logPath . '/phploc.csv', '--log-xml', 'phploc.xml', $srcPath, $testPath], $output);
+        if($retval) {
             return $retval;
         }
         echo $output;
