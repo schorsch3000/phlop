@@ -94,3 +94,5 @@ demo-project
 
 tests/_output/*build
 dist
+
+build
