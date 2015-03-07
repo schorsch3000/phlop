@@ -1,4 +1,7 @@
 {
+  "default":[
+    "phpcbf"
+  ],
   "pre-commit": [
     "lint",
     "pdepend",
