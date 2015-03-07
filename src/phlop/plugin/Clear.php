@@ -10,7 +10,6 @@ namespace phlop\plugin;
 
 use phlop\Fs;
 
-
 class Clear extends \phlop\Plugin
 {
     protected $defaultParamsDef=['delDirs'=>['build','dist']];

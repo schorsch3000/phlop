@@ -10,15 +10,18 @@ namespace phlop\plugin;
 
 use phlop\Fs;
 
-
 class Pack extends \phlop\Plugin
 {
 
-    protected $defaultParamsDef = ["type" => 'tgz', "filenameFormat" => "{composer.name.project}-{semver}", "input" => 'dist'];
+    protected $defaultParamsDef = [
+        "type" => 'tgz',
+        "filenameFormat" => "{composer.name.project}-{semver}",
+        "input" => 'dist'
+    ];
 
     public function def($params)
     {
-        $type=$filenameFormat=$input='';
+        $type = $filenameFormat = $input = '';
         extract($params);
         mkdir('dist/packages');
         $args = [];
@@ -40,7 +43,6 @@ class Pack extends \phlop\Plugin
         return $this->runCommandSilent('tar', $args);
 
     }
-
 }
 
 //TODO:

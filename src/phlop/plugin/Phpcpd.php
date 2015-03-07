@@ -8,7 +8,6 @@
 
 namespace phlop\plugin;
 
-
 use phlop\Plugin;
 use Webmozart\Glob\Glob;
 use Webmozart\PathUtil\Path;
@@ -46,11 +45,10 @@ class Phpcpd extends Plugin
         $this->warning("Found Errors in copy paste detection");
         $this->info($output);
 
-        if($shallBreakBuild) {
+        if ($shallBreakBuild) {
             return $retval;
         }
         return 0;
 
     }
-
 }

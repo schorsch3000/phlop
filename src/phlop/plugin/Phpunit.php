@@ -10,7 +10,6 @@ namespace phlop\plugin;
 
 use phlop\Fs;
 
-
 class Phpunit extends \phlop\Plugin
 {
     public function def()
