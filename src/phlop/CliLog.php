@@ -36,7 +36,7 @@ class CliLog extends AbstractLogger
         $realMessage .= $this->interpolate($message, $context);
         $realMessage.=Color::RST_ALL;
         $realMessage.="\n";
-        return fwrite(fopen('php://stderr','a'),$realMessage);
+        return fwrite(fopen('php://stderr', 'a'), $realMessage);
     }
 
     private function getLogLevelDetail($logLevel)

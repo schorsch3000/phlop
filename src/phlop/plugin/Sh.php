@@ -18,6 +18,6 @@ class Sh extends \phlop\Plugin
     public function def(array $params)
     {
 
-        return $this->runCommand($params['command'],$params['args']);
+        return $this->runCommand($params['command'], $params['args']);
     }
 }

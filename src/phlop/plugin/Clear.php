@@ -18,7 +18,7 @@ class Clear extends \phlop\Plugin
     public function def(array $params)
     {
         $delDirs=$params['delDirs'];
-        $this->info('clearing dirs: '.implode(", ",$delDirs));
+        $this->info('clearing dirs: '.implode(", ", $delDirs));
         foreach ((array)$delDirs as $delDir) {
             Fs::rmrf($delDir);
         }

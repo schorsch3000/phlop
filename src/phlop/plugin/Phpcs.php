@@ -66,7 +66,7 @@ class Phpcs extends Plugin
         $this->warning("Found Errors in checkstyle");
         $this->info($output);
 
-        if($shallBreakBuild){
+        if($shallBreakBuild) {
             return $retval;
         }
         return 0;

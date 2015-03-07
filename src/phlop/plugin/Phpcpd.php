@@ -18,7 +18,6 @@ class Phpcpd extends Plugin
     protected $defaultParamsDef = ["srcPath" => 'src', "shallBreakBuild" => false, "logPath" => 'build/logs'];
 
     public function def($params)
-
     {
         $srcPath = 'src';
         $shallBreakBuild = false;
@@ -47,7 +46,7 @@ class Phpcpd extends Plugin
         $this->warning("Found Errors in copy paste detection");
         $this->info($output);
 
-        if($shallBreakBuild){
+        if($shallBreakBuild) {
             return $retval;
         }
         return 0;

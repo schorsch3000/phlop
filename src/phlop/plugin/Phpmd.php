@@ -19,7 +19,7 @@ class Phpmd extends Plugin
     public function def($params)
     {
         $srcPath = 'src'; $logPath = 'build/logs';
-        extract ($params);
+        extract($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
         }
@@ -29,8 +29,8 @@ class Phpmd extends Plugin
         }
 
         $output='';
-        $retval=$this->runCommandSilent('phpmd', [$srcPath, "xml", "phpmd.xml", "--reportfile", "$logPath/pmd.xml"],$output);
-        if($retval){
+        $retval=$this->runCommandSilent('phpmd', [$srcPath, "xml", "phpmd.xml", "--reportfile", "$logPath/pmd.xml"], $output);
+        if($retval) {
             return $retval;
         }
 
