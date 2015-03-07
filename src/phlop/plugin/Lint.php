@@ -27,7 +27,7 @@ class Lint extends Plugin
             if ($localRetval) {
                 $this->error("Linting error: $output\n");
             }
-            $returnValue=max($returnValue,$localRetval);
+            $returnValue=max($returnValue, $localRetval);
         }
         return $returnValue;
     }
