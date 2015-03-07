@@ -1,0 +1,15 @@
+{
+  "pre-commit": [
+    "lint",
+    "pdepend",
+    "phpcpd",
+    [
+      "phpcs",
+      {
+        "shallBreakBuild": true,
+        "report":"full",
+        "reportToFile":false
+      }
+    ]
+  ]
+}

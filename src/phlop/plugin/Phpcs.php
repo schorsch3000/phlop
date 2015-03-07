@@ -22,7 +22,9 @@ class Phpcs extends Plugin
         "logPath" => 'build/logs',
         "extensions" => 'php',
         "standard" => 'PSR2',
-        "ignore" => ''
+        "ignore" => '',
+        "report" => 'checkstyle',
+        "reportToFile" => true
 
     ];
     public function def($params)
@@ -33,6 +35,8 @@ class Phpcs extends Plugin
         $extensions = 'php';
         $standard = 'PSR2';
         $ignore = '';
+        $report='checkstyle';
+        $reportToFile = true;
         extract($params);
         if (!is_dir($logPath)) {
             mkdir($logPath, 0777, true);
@@ -44,8 +48,10 @@ class Phpcs extends Plugin
 
         $output = '';
         $args = [];
-        $args[] = '--report=checkstyle';
-        $args[] = "--report-file=$logPath/checkstyle.xml";
+        $args[] = "--report=$report";
+        if($reportToFile) {
+            $args[] = "--report-file=$logPath/checkstyle.xml";
+        }
         $args[] = '--standard=' . $standard;
         $args[] = '--extensions=' . $extensions;
         if ($ignore) {
